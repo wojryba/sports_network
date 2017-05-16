@@ -1,6 +1,6 @@
 /* eslint linebreak-style: 0 */
 import React, { Component } from 'react';
-import Home from './components/Home';
+import Home from './Home';
 import 'normalize.css';
 
 class App extends Component {
