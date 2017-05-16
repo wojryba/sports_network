@@ -60,6 +60,7 @@
 }
 
 .Middle_Image{
+  position: static;
   width: 100%;
   height: auto;
 }
@@ -97,6 +98,8 @@
 /*---------------MIDDLE BANNER----------->>>>*/
 
 /*<<<<<---------------BOTTOM BANNER-------------*/
+
+/*TODO fix white bar between image and bottom banner */
 
 .BottomBanner{
   background-color: #ebebeb;

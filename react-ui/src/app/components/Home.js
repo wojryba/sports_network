@@ -1,21 +1,21 @@
 /* eslint linebreak-style: 0 */
 import React, { Component } from 'react';
-import './Home.css';
-import homeImage from './assets/pexels-photo-114296-edited.jpg'
+import '../../styles/Home.css';
+import homeImage from '../../assets/pexels-photo-114296-edited.jpg'
 
 class Home extends Component {
   render() {
     return (
       <div>
-        <div className="HeaderBar">
+      <div className="HeaderBar">
         <h1 className="Header Header_Bar">
-          Sports<br/> Network
+            Sports<br/> Network
         </h1>
         <h1 className="Header_About Header_Bar">
-          About
+            About
         </h1>
         <h1 className=" Header_Login_Border Header_Login Header_Bar">
-          Login
+            Login
         </h1>
       </div>
       <div className="ImageMiddle">
@@ -38,7 +38,7 @@ class Home extends Component {
             <li>Careers</li>
             <li>Tools</li>
           </ul>
-      </div>
+        </div>
       </div>
       </div>
     );
