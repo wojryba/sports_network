@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css?family=Muli:400,900');
+
+
+/*<<<<<------------- HEADER BAR------- */
+.Header_Bar{
+  display: inline-block;
+  float: left;
+  font-family: 'Muli', sans-serif;
+  color: #575757;
+}
+
+.Header {
+  font-size: 5em;
+  float: left;
+  margin-left: 5%;
+  text-align: left;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  letter-spacing: -1.5px;
+  line-height: 78px;
+}
+
+.Header_About{
+  margin-left: 40%;
+  font-size: 2.5em;
+  margin-top: 60px;
+  float: left;
+  letter-spacing: -0.5px;
+}
+
+.Header_Login{
+  margin-left: 5%;
+  font-size: 2.5em;
+  margin-top: 50px;
+  float: left;
+  letter-spacing: -2px;
+}
+
+.Header_Login:hover{
+  border: none;
+  padding: 13px;
+  cursor: pointer;
+}
+
+.Header_Login_Border{
+  border: 3px;
+  border-color: #575757;
+  border-style: solid;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+/*-------------HEADER BAR ----------->>>>>*/
+
+/*<<<<----------------MIDDLE BANNER-----------*/
+
+.ImageMiddle{
+  font-family: 'Muli', sans-serif;
+  color: white;
+}
+
+.Middle_Image{
+  width: 100%;
+  height: auto;
+}
+
+.Middle_Text{
+  z-index: 2;
+  position: absolute;
+  margin-top: -380px;
+  margin-left: 40%;
+  font-size: 6em;
+  line-height: 83px;
+  letter-spacing: 0px;
+}
+
+.Middle_Button{
+  z-index: 2;
+  position: absolute;
+  margin-top: -180px;
+  margin-left: 40%;
+  font-weight: 900;
+  font-size: 2em;
+  border: 3px;
+  border-color: white;
+  border-style: solid;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.Middle_Button:hover{
+  border: none;
+  padding: 13px;
+  cursor: pointer;
+}
+
+/*---------------MIDDLE BANNER----------->>>>*/
+
+/*<<<<<---------------BOTTOM BANNER-------------*/
+
+.BottomBanner{
+  background-color: #ebebeb;
+  width: auto;
+  height: 200px;
+  font-family: 'Muli', sans-serif;
+  color: #575757;
+  font-size: 0.8em;
+}
+
+.Bottom_Center{
+  padding-top: 20px;
+  width: 25%;
+  margin: auto;
+}
+
+.Bottom_Using_Sports_Network_Column{
+  padding-left: 0;
+  float: left;
+  list-style-type: none;
+  line-height: 25px;
+  text-align: center;
+}
+
+.Bottom_About_Us_Column{
+  float: left;
+  padding-left: 90px;
+  list-style-type: none;
+  line-height: 25px;
+  text-align: center;
+}
+
+.Bottom_Bold{
+  font-weight: 900;
+}
+
+/*--------------------BOTTM BANNER------------>>>>*/
