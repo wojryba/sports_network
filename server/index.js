@@ -21,6 +21,9 @@ app.use(bodyParser.json());
 // Priority serve any static files.
 app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
+const user = require('./userLogin');
+app.use('/userLogin', user);
+
 // All remaining requests return the React app, so it can handle routing.
 app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));

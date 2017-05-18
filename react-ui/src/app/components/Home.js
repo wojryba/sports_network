@@ -5,6 +5,7 @@ import homeImage from '../../assets/pexels-photo-114296-edited.jpg'
 
 class Home extends Component {
   render() {
+    const { onLoginClick } = this.props
     return (
       <div>
       <div className="HeaderBar">
@@ -14,7 +15,7 @@ class Home extends Component {
         <h1 className="Header_About Header_Bar">
             About
         </h1>
-        <h1 className=" Header_Login_Border Header_Login Header_Bar">
+        <h1 onClick={onLoginClick} className=" Header_Login_Border Header_Login Header_Bar">
             Login
         </h1>
       </div>
