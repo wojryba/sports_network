@@ -1,9 +1,10 @@
 /* eslint linebreak-style: 0 */
 import {combineReducers} from 'redux';
-import example from './example';
+import auth from './auth';
+import user from './user';
 
 const rootReducer = combineReducers({
-  example
+  auth, user
 });
 
 export default rootReducer;
