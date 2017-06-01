@@ -25,17 +25,9 @@ export function login() {
 
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 
-export function logoutSuccess(profile) {
+export function logout() {
   return {
     type: LOGOUT_SUCCESS
-  }
-}
-
-export function logout() {
-  return dispatch => {
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('profile');
-    return dispatch(logoutSuccess());
   }
 }
 
@@ -62,5 +54,5 @@ export function checkAndSaveUser(profile) {
   [CALL_API]: {
     endpoint: `userLogin`,
     authenticated: true,
-    types: [ USER_REQUEST, USER_SUCCESS, USER_FAILURE ]
+    types: [ USER_SUCCESS, USER_FAILURE ]
   } */

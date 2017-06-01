@@ -9,19 +9,25 @@ import 'normalize.css';
 class MainContainer extends Component {
   constructor(props) {
     super(props);
+    this.handleLogout = this.handleLogout.bind(this);
 
     authActions.auth.on('profile_updated', (profile) => {
       props.loginSuccess(profile);
       props.checkAndSaveUser(profile);
     })
   }
+
+  handleLogout() {
+    this.props.logout();
+  }
+
   render() {
     return (
       <div>
         {this.props.user.isNew ?
           <div>TUTORIAL</div> :
           <div>
-            <Main />
+            <Main onLogoutClick={this.handleLogout}/>
           </div>
         }
       </div>

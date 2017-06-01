@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import * as createEventActions from '../actions/createEventActions';
+
 
 class NewEventForm extends Component {
   constructor(props){
@@ -10,14 +12,15 @@ class NewEventForm extends Component {
   }
 
   handleSubmit(e){
-    e.preventDefault(),
-    this.setState({
+    e.preventDefault();
+    const event = {
       event: e.target.Event.value,
       date: e.target.Date.value,
       time: e.target.Time.value,
       sport: e.target.Sport.value,
       description: e.target.Description.value
-    })
+    }
+    this.props.createEventAction(event);
   }
 
   render() {
@@ -52,4 +55,18 @@ class NewEventForm extends Component {
   }
 }
 
-export default NewEventForm
+function mapStateToProps(state) {
+  const { createEvent } = state
+  return {
+    createEvent
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({createEventAction: createEventActions.createEvent}, dispatch);
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NewEventForm);
