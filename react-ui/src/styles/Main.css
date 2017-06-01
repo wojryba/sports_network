@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css?family=Muli:400,900');
+
+body {
+  background-color: #ebebeb;
+}
+
+.Page_Container{
+  display: block;
+}
+
+/*<<<<<------------- HEADER BAR------- */
+.HeaderBarContainer{
+  background-color: white;
+  position: fixed;
+  display: inline-block;
+  width: 100vw;
+}
+
+.Header_Bar{
+  display: inline-block;
+  float: left;
+  font-family: 'Muli', sans-serif;
+  color: #575757;
+}
+
+.Header {
+  font-size: 5em;
+  float: left;
+  margin-left: 5%;
+  text-align: left;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  letter-spacing: -1.5px;
+  line-height: 78px;
+}
+
+.Header_About{
+  margin-left: 40%;
+  font-size: 2.5em;
+  margin-top: 60px;
+  float: left;
+  letter-spacing: -0.5px;
+}
+
+.Header_Login{
+  margin-left: 5%;
+  font-size: 2.5em;
+  margin-top: 50px;
+  float: left;
+  letter-spacing: -2px;
+}
+
+.Header_Login:hover{
+  border: none;
+  padding: 13px;
+  cursor: pointer;
+}
+
+.Header_Login_Border{
+  border: 3px;
+  border-color: #575757;
+  border-style: solid;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+/*-------------HEADER BAR ----------->>>>>*/
+
+
+/*--------------BODY--------------->>>>>>*/
+.Body_Container{}
+
+.Body_Container_Right{
+  margin-top: 200px;
+  float: right;
+  width: 25%;
+  margin-right: 3%;
+}
+
+.AddEvent_Container{
+  color: #575757;
+  font-family: 'Muli', sans-serif;
+}
+
+.AddEvent_Header{
+  background-color: white;
+  font-weight: 500;
+  text-align: center;
+  padding: 4%;
+  font-size: 2em;
+  letter-spacing: -1px;
+  color: #454545;
+  border: 0px;
+  border-radius: 7px;
+}
+
+.AddEvent_Body{
+  background-color: white;
+  margin-top: 15px;
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 1em;
+  border: 0px;
+  border-radius: 7px;
+}
+
+.AddEvent_Form{
+  font-weight: bold;
+}
+
+.AddEvent_TextInput{
+  padding-top: 30px;
+  display: flex;
+}
+
+.AddEvent_SubmitInput{
+  margin-top: 30px;
+  font-size: 2em;
+  color: #575757;
+  font-weight: bold;
+  font-family: 'Muli', sans-serif;
+  letter-spacing: -1px;
+}
+
+#text{
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-weight: normal;
+  font-size: 1em;
+  width: 100%;
+  margin-left: 20px;
+  border-bottom: 2px solid #747474;
+}
+
+#text:focus{
+  outline: none;
+  border-bottom: 2px solid #747474;
+}
+
+#button{
+  border: none;
+  background: transparent;
+  text-align: center;
+  width: 100%;
+}
+
+#textarea{
+  margin-top: 15px;
+  padding: 7%;
+  width: 86%;
+  height: 55px;
+  resize: none;
+  border: 1px solid #b9b9b9;
+}
+
+#textarea:focus{
+  outline: none;
+}

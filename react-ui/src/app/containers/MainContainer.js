@@ -2,6 +2,7 @@
 import React, {Component } from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import Main from '../components/Main'
 import * as authActions from '../actions/authActions';
 import 'normalize.css';
 
@@ -20,7 +21,7 @@ class MainContainer extends Component {
         {this.props.user.isNew ?
           <div>TUTORIAL</div> :
           <div>
-            <h1>I am main container</h1>
+            <Main />
           </div>
         }
       </div>
