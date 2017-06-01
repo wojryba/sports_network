@@ -44,12 +44,23 @@ export const USER_SUCCESS = 'USER_SUCCESS'
 export const USER_FAILURE = 'USER_FAILURE'
 
 
-export function user() {
+export function checkAndSaveUser(profile) {
+  // this is post request for saving user
   return {
     [CALL_API]: {
       endpoint: `userLogin`,
       authenticated: true,
-      types: [ USER_REQUEST, USER_SUCCESS, USER_FAILURE ]
+      method: 'POST',
+      data: profile,
+      types: [ USER_SUCCESS, USER_FAILURE ]
     }
   }
 }
+
+
+  /* this is example get request
+  [CALL_API]: {
+    endpoint: `userLogin`,
+    authenticated: true,
+    types: [ USER_REQUEST, USER_SUCCESS, USER_FAILURE ]
+  } */

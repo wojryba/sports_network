@@ -11,31 +11,35 @@ class MainContainer extends Component {
 
     authActions.auth.on('profile_updated', (profile) => {
       props.loginSuccess(profile);
+      props.checkAndSaveUser(profile);
     })
   }
   render() {
-    console.log(this.props)
-    this.props.user();
-    console.log(this.props)
     return (
       <div>
-        <h1>I am main container</h1>
+        {this.props.user.isNew ?
+          <div>TUTORIAL</div> :
+          <div>
+            <h1>I am main container</h1>
+          </div>
+        }
       </div>
     )
   }
 }
 
 function mapStateToProps(state) {
-  const { auth } = state
+  const { auth, user } = state
   const { isAuthenticated, profile } = auth
   return {
     isAuthenticated,
-    profile
+    profile,
+    user
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({login: authActions.login, loginSuccess: authActions.loginSuccess, logout: authActions.logout, user: authActions.user}, dispatch);
+  return bindActionCreators({login: authActions.login, loginSuccess: authActions.loginSuccess, logout: authActions.logout, checkAndSaveUser: authActions.checkAndSaveUser}, dispatch);
 }
 
 export default connect(
