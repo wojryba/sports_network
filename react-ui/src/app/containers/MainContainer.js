@@ -2,6 +2,7 @@
 import React, {Component } from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import Main from '../components/Main'
 import * as authActions from '../actions/authActions';
 import 'normalize.css';
 
@@ -19,7 +20,7 @@ class MainContainer extends Component {
     console.log(this.props)
     return (
       <div>
-        <h1>I am main container</h1>
+        <Main />
       </div>
     )
   }
