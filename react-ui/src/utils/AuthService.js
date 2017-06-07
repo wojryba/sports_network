@@ -1,14 +1,13 @@
 import Auth0Lock from 'auth0-lock'
 import { EventEmitter } from 'events'
 
-
 export default class AuthService extends EventEmitter {
   constructor(clientId, domain) {
     super()
     // Configure Auth0
     this.lock = new Auth0Lock(clientId, domain, {
       auth: {
-        redirectUrl: 'http://localhost:3000/main',
+        redirectUrl: 'http://localhost:3000/',
         responseType: 'token'
       }
     })

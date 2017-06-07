@@ -3,25 +3,25 @@ import * as ActionTypes from '../actions/authActions';
 
 export default function user(state = {
   isFetching: false,
-  user: {},
+  isNew: '',
   error: ''
 }, action) {
-  console.log(action)
   switch (action.type) {
     case ActionTypes.USER_REQUEST:
       return Object.assign({}, state, {
         isFetching: true
       })
     case ActionTypes.USER_SUCCESS:
+      const isNewUser = JSON.parse(action.response);
       return Object.assign({}, state, {
         isFetching: false,
-        user: action.response,
+        isNew: isNewUser.isNew,
         error: ''
       })
     case ActionTypes.USER_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
-        user: {},
+        isNew: false,
         error: action.error
       })
     default:

@@ -1,18 +1,33 @@
 const BASE_URL = 'http://localhost:5000/'
 
-function callApi(endpoint, authenticated) {
+function callApi(endpoint, authenticated, method, data) {
 
   let token = localStorage.getItem('id_token') || null
   let config = {}
 
   if(authenticated) {
     if(token) {
-      config = {
-        headers: { 'Authorization': `Bearer ${token}` }
+      // check if post method is specifed, if so append proper config
+      if (method === 'POST') {
+        config = {
+          method: "POST",
+          body: JSON.stringify({data}),
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'Authorization': `Bearer ${token}`
+          },
+        }
+      } else { // if not just normal auth confing
+        config = {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          },
+        }
       }
     }
     else {
-      throw "No token saved!"
+      let error = {error: "No token saved!"};
+      throw error
     }
   }
 
@@ -39,12 +54,12 @@ export default store => next => action => {
     return next(action)
   }
 
-  let { endpoint, types, authenticated } = callAPI
+  let { endpoint, types, authenticated, method, data } = callAPI
 
-  const [ requestType, successType, errorType ] = types
+  const [ successType, errorType ] = types
 
   // Passing the authenticated boolean back in our data will let us distinguish between normal and secret quotes
-  return callApi(endpoint, authenticated).then(
+  return callApi(endpoint, authenticated, method, data).then(
     response =>
       next({
         response,
