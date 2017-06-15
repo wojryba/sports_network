@@ -14,6 +14,7 @@ body {
   position: fixed;
   display: inline-block;
   width: 100vw;
+  z-index: 100;
 }
 
 .Header_Bar{

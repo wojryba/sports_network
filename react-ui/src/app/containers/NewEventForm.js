@@ -5,6 +5,7 @@ import * as createEventActions from '../actions/createEventActions';
 import DatePicker from 'react-datepicker';
 import TimePicker from 'rc-time-picker';
 import moment from 'moment';
+import PlacesAutocomplete from 'react-places-autocomplete'
 
 import 'react-datepicker/dist/react-datepicker.css';
 import 'rc-time-picker/assets/index.css';
@@ -16,8 +17,15 @@ class NewEventForm extends Component {
 
     this.state = {
       startDate: moment(),
-      time: null
+      time: moment(),
+      address: ''
     };
+
+    this.onChange = (address) => this.setState({
+      startDate: this.state.startDate,
+      time: this.state.time,
+      address
+    })
 
     this.handleTimeChange = this.handleTimeChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
@@ -28,13 +36,15 @@ class NewEventForm extends Component {
     this.setState({
       startDate: date,
       time: this.state.time,
+      address: this.state.address
     });
   }
 
   handleTimeChange(value) {
     this.setState({
       startDate: this.state.startDate,
-      time: value
+      time: value,
+      address: this.state.address
     })
   }
 
@@ -46,12 +56,28 @@ class NewEventForm extends Component {
       date: this.state.startDate.format('L'),
       time: this.state.time.valueOf(),
       sport: e.target.Sport.value,
+      location: this.state.address,
       description: e.target.Description.value
     }
+    console.log(event);
     this.props.createEventAction(event);
   }
 
   render() {
+    const inputProps = {
+      value: this.state.address,
+      onChange: this.onChange,
+    }
+
+    const myStyles = {
+      input: {
+        padding: '0px',
+        marginLeft: '20px',
+        border: 'none',
+        borderBottom: '2px solid #747474'
+      }
+    }
+
     return (
       <div className="AddEvent_Container">
         <div className="AddEvent_Header">
@@ -81,6 +107,9 @@ class NewEventForm extends Component {
             <div className="AddEvent_TextInput">
               Sport
               <input type="text" id="text" name="Sport"/></div>
+            <div className="AddEvent_TextInput">
+              Location
+              <PlacesAutocomplete styles={myStyles} inputProps={inputProps} /></div>
             <div className="AddEvent_TextInput">
               Description
             </div>
