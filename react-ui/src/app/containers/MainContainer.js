@@ -10,11 +10,6 @@ class MainContainer extends Component {
   constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
-
-    authActions.auth.on('profile_updated', (profile) => {
-      props.loginSuccess(profile);
-      props.checkAndSaveUser(profile);
-    })
   }
 
   handleLogout() {

@@ -21,29 +21,39 @@ function getProfile() {
 }
 
 
-export default function auth(state = {
+export default function auth(state = [{
     isAuthenticated: checkTokenExpiry(),
     profile: getProfile(),
     error: ''
-  }, action) {
+}], action) {
   switch (action.type) {
     case ActionTypes.LOGIN_SUCCESS:
-      return Object.assign({}, state, {
-        isAuthenticated: true,
-        profile: action.profile,
-        error: ''
-      })
+      return [
+        {
+          isAuthenticated: checkTokenExpiry(),
+          profile: action.profile,
+          error: ''
+        },
+        ...state
+      ]
     case ActionTypes.LOGIN_ERROR:
-      return Object.assign({}, state, {
-        isAuthenticated: false,
-        profile: null,
-        error: action.error
-      })
+      return [
+        {
+          isAuthenticated: checkTokenExpiry(),
+          profile: null,
+          error: action.error
+        },
+        ...state
+      ]
     case ActionTypes.LOGOUT_SUCCESS:
-      return Object.assign({}, state, {
-        isAuthenticated: false,
-        profile: null
-      })
+    return [
+      {
+        isAuthenticated: checkTokenExpiry(),
+        profile: null,
+        error: ''
+      },
+      ...state
+    ]
     default:
       return state
     }

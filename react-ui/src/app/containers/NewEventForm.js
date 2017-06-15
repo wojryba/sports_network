@@ -2,21 +2,49 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as createEventActions from '../actions/createEventActions';
+import DatePicker from 'react-datepicker';
+import TimePicker from 'rc-time-picker';
+import moment from 'moment';
+
+import 'react-datepicker/dist/react-datepicker.css';
+import 'rc-time-picker/assets/index.css';
 
 
 class NewEventForm extends Component {
   constructor(props){
     super(props)
 
+    this.state = {
+      startDate: moment(),
+      time: null
+    };
+
+    this.handleTimeChange = this.handleTimeChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  handleDateChange(date) {
+    this.setState({
+      startDate: date,
+      time: this.state.time,
+    });
+  }
+
+  handleTimeChange(value) {
+    this.setState({
+      startDate: this.state.startDate,
+      time: value
+    })
+  }
+
 
   handleSubmit(e){
     e.preventDefault();
     const event = {
       event: e.target.Event.value,
-      date: e.target.Date.value,
-      time: e.target.Time.value,
+      date: this.state.startDate.format('L'),
+      time: this.state.time.valueOf(),
       sport: e.target.Sport.value,
       description: e.target.Description.value
     }
@@ -36,10 +64,20 @@ class NewEventForm extends Component {
               <input type="text" id="text" name="Event"/></div>
             <div className="AddEvent_TextInput">
               Date
-              <input type="text" id="text" name="Date"/></div>
+              <DatePicker
+                className="AddEvent_DateInput"
+                selected={this.state.startDate}
+                onChange={this.handleDateChange}
+              /></div>
             <div className="AddEvent_TextInput">
               Time
-              <input type="text" id="text" name="Time"/></div>
+              <TimePicker
+                style={{ width: 100 }}
+                showSecond={false}
+                defaultValue={moment()}
+                className="AddEvent_TimeInput"
+                onChange={this.handleTimeChange}
+              /></div>
             <div className="AddEvent_TextInput">
               Sport
               <input type="text" id="text" name="Sport"/></div>
