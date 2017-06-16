@@ -27,8 +27,10 @@ router.post('/create', authCheck, (req, res) => {
       date: req.body.data.date,
       time: req.body.data.time,
       sport: req.body.data.sport,
+      location: req.body.data.location,
       description: req.body.data.description
     });
+    console.log(e);
     user.eventsCreated.push(e);
     e.save().then(() => {
       user.save().then(() => {
@@ -48,6 +50,14 @@ router.post('/create', authCheck, (req, res) => {
     console.log(error);
     res.status(400).send(error);
   })
+})
+
+router.get('/getEventsInLocation', (req, res) => {
+  Event.find({location: 'London, United Kingdom'})
+  .then(ev => {
+    res.send(ev);
+  })
+  .catch(err => res.send(err))
 })
 
 router.get('/getAllEvents', (req, res) => {

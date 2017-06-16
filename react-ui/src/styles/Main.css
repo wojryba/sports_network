@@ -14,6 +14,7 @@ body {
   position: fixed;
   display: inline-block;
   width: 100vw;
+  z-index: 100;
 }
 
 .Header_Bar{
@@ -113,6 +114,18 @@ body {
 .AddEvent_TextInput{
   padding-top: 30px;
   display: flex;
+}
+
+.AddEvent_DateInput {
+  border: none;
+  margin-left: 20px;
+  border-bottom: 2px solid #747474;
+  text-align: center;
+}
+
+.AddEvent_TimeInput {
+  margin-left: 75px;
+  text-align: center;
 }
 
 .AddEvent_SubmitInput{

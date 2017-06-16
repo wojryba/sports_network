@@ -25,9 +25,9 @@ class App extends Component {
 
 function mapStateToProps(state) {
   const { auth } = state
-  const { isAuthenticated } = auth
+  const { isAuthenticated } = auth[0]
   return {
-    isAuthenticated,
+    isAuthenticated
   };
 }
 

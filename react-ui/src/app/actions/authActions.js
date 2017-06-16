@@ -26,6 +26,7 @@ export function login() {
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 
 export function logout() {
+  auth.logout();
   return {
     type: LOGOUT_SUCCESS
   }
