@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const jwt = require('express-jwt');
 require('dotenv').config();
+const User = require('./models/userModel');
 
 const authCheck = jwt({
   secret: process.env.SECRET,
@@ -17,11 +18,23 @@ const authCheck = jwt({
 
 const router = express.Router();
 
-router.get('/', authCheck, (req, res) => {
-  const response = {
-    user: 'I am a user!'
-  }
-  res.send(response);
+router.post('/', authCheck, (req, res) => {
+  User.findOrCreate({user: req.body.data.user_id}).then(user => {
+    let response;
+    if (user.created) {
+      response = {
+        isNew: true
+      }
+    } else {
+      response = {
+        isNew: false
+      }
+    }
+    res.send(response);
+  })
+  .catch(error => {
+    console.log(error);
+  })
 })
 
 module.exports = router;

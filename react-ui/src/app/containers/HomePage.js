@@ -10,15 +10,15 @@ class HomePage extends Component {
   constructor(props) {
     super(props);
     this.handleLoginClick = this.handleLoginClick.bind(this)
-    this.handleLogoutClick = this.handleLogoutClick.bind(this)
+
+    authActions.auth.on('profile_updated', (profile) => {
+      props.loginSuccess(profile);
+      props.checkAndSaveUser(profile);
+    })
   }
 
   handleLoginClick() {
     this.props.login();
-  }
-
-  handleLogoutClick() {
-    this.props.logout()
   }
 
   render() {
@@ -32,8 +32,8 @@ class HomePage extends Component {
 }
 
 function mapStateToProps(state) {
-  const { auth } = state
-  const { isAuthenticated, profile } = auth
+  const { auth } = state;
+  const { isAuthenticated, profile } = auth;
   return {
     isAuthenticated,
     profile
@@ -41,7 +41,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({login: authActions.login, loginSuccess: authActions.loginSuccess, logout: authActions.logout}, dispatch);
+  return bindActionCreators({login: authActions.login, loginSuccess: authActions.loginSuccess, logout: authActions.logout, checkAndSaveUser: authActions.checkAndSaveUser}, dispatch);
 }
 
 export default connect(

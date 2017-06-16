@@ -25,17 +25,10 @@ export function login() {
 
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 
-export function logoutSuccess(profile) {
+export function logout() {
+  auth.logout();
   return {
     type: LOGOUT_SUCCESS
-  }
-}
-
-export function logout() {
-  return dispatch => {
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('profile');
-    return dispatch(logoutSuccess());
   }
 }
 
@@ -44,12 +37,23 @@ export const USER_SUCCESS = 'USER_SUCCESS'
 export const USER_FAILURE = 'USER_FAILURE'
 
 
-export function user() {
+export function checkAndSaveUser(profile) {
+  // this is post request for saving user
   return {
     [CALL_API]: {
       endpoint: `userLogin`,
       authenticated: true,
-      types: [ USER_REQUEST, USER_SUCCESS, USER_FAILURE ]
+      method: 'POST',
+      data: profile,
+      types: [ USER_SUCCESS, USER_FAILURE ]
     }
   }
 }
+
+
+  /* this is example get request
+  [CALL_API]: {
+    endpoint: `userLogin`,
+    authenticated: true,
+    types: [ USER_SUCCESS, USER_FAILURE ]
+  } */
