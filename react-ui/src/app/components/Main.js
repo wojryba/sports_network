@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import '../../styles/Main.css';
 import NewEventForm from '../containers/NewEventForm'
-import EventDisplay from '../containers/EventDisplay'
+import EventContainer from '../containers/EventContainer'
+
 
 class Main extends Component {
 
   render(){
-    const { onLogoutClick } = this.props
+    const { onLogoutClick, sport } = this.props
     return(
       <div className="Page_Container">
         <div className="HeaderBarContainer">
@@ -22,8 +23,7 @@ class Main extends Component {
         </div>
         <div className="Body_Container">
           <div className="Body_Container_Left">
-            <EventDisplay />
-            <EventDisplay />
+            <EventContainer sport={sport}/>
           </div>
           <div className="Body_Container_Right">
             <NewEventForm />

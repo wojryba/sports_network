@@ -93,6 +93,18 @@ body {
   float: right;
 }
 
+/*--------------Events Listings--------------->>>>>>*/
+
+.Events_Header{
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  color: #575757;
+  font-family: 'Muli', sans-serif;
+  background-color: white;
+  font-size: 2.4em;
+}
+
 .Event_Container{
   padding: 10px;
   border-radius: 5px;
@@ -101,6 +113,8 @@ body {
   font-family: 'Muli', sans-serif;
   background-color: white;
 }
+
+/*--------------Add Events Container--------------->>>>>>*/
 
 .AddEvent_Container{
   color: #575757;
