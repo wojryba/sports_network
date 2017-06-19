@@ -6,6 +6,7 @@ import DatePicker from 'react-datepicker';
 import TimePicker from 'rc-time-picker';
 import moment from 'moment';
 import PlacesAutocomplete from 'react-places-autocomplete'
+import Dropdown from 'react-dropdown'
 
 import 'react-datepicker/dist/react-datepicker.css';
 import 'rc-time-picker/assets/index.css';
@@ -18,25 +19,29 @@ class NewEventForm extends Component {
     this.state = {
       startDate: moment(),
       time: moment(),
-      address: ''
+      address: '',
+      sport: ''
     };
 
     this.onChange = (address) => this.setState({
       startDate: this.state.startDate,
       time: this.state.time,
-      address
+      address,
+      sport: this.state.sport
     })
 
     this.handleTimeChange = this.handleTimeChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this._onSelect = this._onSelect.bind(this);
   }
 
   handleDateChange(date) {
     this.setState({
       startDate: date,
       time: this.state.time,
-      address: this.state.address
+      address: this.state.address,
+      sport: this.state.sport
     });
   }
 
@@ -44,7 +49,17 @@ class NewEventForm extends Component {
     this.setState({
       startDate: this.state.startDate,
       time: value,
-      address: this.state.address
+      address: this.state.address,
+      sport: this.state.sport
+    })
+  }
+
+  _onSelect (option) {
+    this.setState({
+      startDate: this.state.startDate,
+      time: this.state.time,
+      address: this.state.address,
+      sport: option.value
     })
   }
 
@@ -55,11 +70,10 @@ class NewEventForm extends Component {
       event: e.target.Event.value,
       date: this.state.startDate.format('L'),
       time: this.state.time.valueOf(),
-      sport: e.target.Sport.value,
+      sport: this.state.sport,
       location: this.state.address,
       description: e.target.Description.value
     }
-    console.log(event);
     this.props.createEventAction(event);
   }
 
@@ -78,23 +92,32 @@ class NewEventForm extends Component {
       }
     }
 
+    const options = [
+      'Soccer', 'Volleyball', 'Basketball', 'Tennis', 'Table Tennis', 'Hockey', 'Golf', 'Badminton', 'American Football'
+    ];
+    const defaultOption = options[0];
+
     return (
       <div className="AddEvent_Container">
         <div className="AddEvent_Header">
           Create Event
+          {this.props.createEvent[0].eventCreated ? <p>Event Created!</p> : <p></p>}
+          {this.props.createEvent[0].error ? <p>You must input Event name, location and choose a sport.</p> : <p></p>}
         </div>
         <div className="AddEvent_Body">
           <form className="AddEvent_Form" onSubmit={this.handleSubmit}>
             <div className="AddEvent_TextInput">
               Event
-              <input type="text" id="text" name="Event"/></div>
+              <input type="text" id="text" name="Event"/>
+            </div>
             <div className="AddEvent_TextInput">
               Date
               <DatePicker
                 className="AddEvent_DateInput"
                 selected={this.state.startDate}
                 onChange={this.handleDateChange}
-              /></div>
+              />
+            </div>
             <div className="AddEvent_TextInput">
               Time
               <TimePicker
@@ -103,13 +126,16 @@ class NewEventForm extends Component {
                 defaultValue={moment()}
                 className="AddEvent_TimeInput"
                 onChange={this.handleTimeChange}
-              /></div>
+              />
+            </div>
             <div className="AddEvent_TextInput">
-              Sport
-              <input type="text" id="text" name="Sport"/></div>
+              Sports:
+              <Dropdown className="AddEvent_DropDown" options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />
+            </div>
             <div className="AddEvent_TextInput">
               Location
-              <PlacesAutocomplete styles={myStyles} inputProps={inputProps} /></div>
+              <PlacesAutocomplete styles={myStyles} inputProps={inputProps} />
+            </div>
             <div className="AddEvent_TextInput">
               Description
             </div>
