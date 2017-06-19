@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../styles/Main.css';
 import NewEventForm from '../containers/NewEventForm'
+import EventDisplay from '../containers/EventDisplay'
 
 class Main extends Component {
 
@@ -20,6 +21,10 @@ class Main extends Component {
           </h1>
         </div>
         <div className="Body_Container">
+          <div className="Body_Container_Left">
+            <EventDisplay />
+            <EventDisplay />
+          </div>
           <div className="Body_Container_Right">
             <NewEventForm />
           </div>

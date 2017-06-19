@@ -69,10 +69,18 @@ body {
 
 
 /*--------------BODY--------------->>>>>>*/
-.Body_Container{}
+.Body_Container{
+  padding-top: 200px;
+  margin: auto;
+}
+
+.Body_Container_Left{
+  float: left;
+  width: 60%;
+  margin-left: 6%;
+}
 
 .Body_Container_Right{
-  margin-top: 200px;
   float: right;
   width: 25%;
   margin-right: 3%;
@@ -83,6 +91,15 @@ body {
   margin-right: 22%;
   width: 50%;
   float: right;
+}
+
+.Event_Container{
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  color: #575757;
+  font-family: 'Muli', sans-serif;
+  background-color: white;
 }
 
 .AddEvent_Container{
