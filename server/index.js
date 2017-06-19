@@ -24,6 +24,9 @@ app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 const user = require('./userLogin');
 app.use('/userLogin', user);
 
+const tutorial = require('./tutorial');
+app.use('/tutorial', tutorial);
+
 const events = require('./events');
 app.use('/events', events);
 

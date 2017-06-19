@@ -3,6 +3,7 @@ import React, {Component } from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Main from '../components/Main'
+import TutorialContainer from './TutorialContainer'
 import * as authActions from '../actions/authActions';
 import 'normalize.css';
 
@@ -19,12 +20,7 @@ class MainContainer extends Component {
   render() {
     return (
       <div>
-        {this.props.user.isNew ?
-          <div>TUTORIAL</div> :
-          <div>
-            <Main onLogoutClick={this.handleLogout}/>
-          </div>
-        }
+        {this.props.user.isNew ? <TutorialContainer onLogoutClick={this.handleLogout}/> : <Main onLogoutClick={this.handleLogout}/>}
       </div>
     )
   }
