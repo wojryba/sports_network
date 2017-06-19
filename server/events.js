@@ -30,7 +30,6 @@ router.post('/create', authCheck, (req, res) => {
       location: req.body.data.location,
       description: req.body.data.description
     });
-    console.log(e);
     user.eventsCreated.push(e);
     e.save().then(() => {
       user.save().then(() => {
@@ -38,7 +37,7 @@ router.post('/create', authCheck, (req, res) => {
       })
       .catch(error => {
         console.log(error);
-        res.status(400).send(error);
+        res.send(error);
       })
     })
     .catch(error => {

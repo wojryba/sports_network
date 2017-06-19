@@ -1,5 +1,6 @@
 /* eslint linebreak-style: 0 */
 import * as ActionTypes from '../actions/authActions';
+import * as ActionTypes2 from '../actions/tutorialActions';
 
 export default function user(state = {
   isFetching: false,
@@ -21,7 +22,19 @@ export default function user(state = {
     case ActionTypes.USER_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
+        isNew: true,
+        error: action.error
+      })
+    case ActionTypes2.TUTORIAL_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
         isNew: false,
+        error: ''
+      })
+    case ActionTypes2.TUTORIAL_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        isNew: true,
         error: action.error
       })
     default:

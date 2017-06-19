@@ -24,13 +24,16 @@ app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 const user = require('./userLogin');
 app.use('/userLogin', user);
 
+const tutorial = require('./tutorial');
+app.use('/tutorial', tutorial);
+
 const events = require('./events');
 app.use('/events', events);
 
 // All remaining requests return the React app, so it can handle routing.
-/* app.get('*', function(request, response) {
-  response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
-}); */
+app.get('*', function(request, response) {
+  response.sendFile(path.resolve(__dirname, '../react-ui/public', 'index.html'));
+});
 
 app.listen(PORT, function () {
   console.log(`Listening on port ${PORT}`);

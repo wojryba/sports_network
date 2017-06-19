@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:5000/'
+const BASE_URL = ''
 
 function callApi(endpoint, authenticated, method, data) {
 
@@ -40,7 +40,10 @@ function callApi(endpoint, authenticated, method, data) {
       }
 
       return text
-    }).catch(err => console.log(err))
+    }).catch(err => {
+      console.log(err);
+      return Promise.reject(err);
+    })
 }
 
 export const CALL_API = Symbol('Call API')
@@ -57,6 +60,7 @@ export default store => next => action => {
   let { endpoint, types, authenticated, method, data } = callAPI
 
   const [ successType, errorType ] = types
+  //console.log(errorType)
 
   // Passing the authenticated boolean back in our data will let us distinguish between normal and secret quotes
   return callApi(endpoint, authenticated, method, data).then(
