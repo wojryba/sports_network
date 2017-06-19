@@ -7,6 +7,7 @@
     "jwt-decode": "^2.2.0",
     "moment": "^2.18.1",
     "normalize.css": "^7.0.0",
+    "rc-time-picker": "^2.4.1",
     "react": "^15.5.4",
     "react-checkbox-group": "^3.1.1",
     "react-datepicker": "^0.47.0",
