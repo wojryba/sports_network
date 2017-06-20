@@ -7,7 +7,7 @@ import EventContainer from '../containers/EventContainer'
 class Main extends Component {
 
   render(){
-    const { onLogoutClick, sport } = this.props
+    const { onLogoutClick } = this.props
     return(
       <div className="Page_Container">
         <div className="HeaderBarContainer">
@@ -23,7 +23,7 @@ class Main extends Component {
         </div>
         <div className="Body_Container">
           <div className="Body_Container_Left">
-            <EventContainer sport={sport}/>
+            <EventContainer />
           </div>
           <div className="Body_Container_Right">
             <NewEventForm />

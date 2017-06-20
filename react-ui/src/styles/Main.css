@@ -102,16 +102,45 @@ body {
   color: #575757;
   font-family: 'Muli', sans-serif;
   background-color: white;
-  font-size: 2.4em;
+  font-size: 2.5em;
 }
 
 .Event_Container{
-  padding: 10px;
+  padding: 20px;
   border-radius: 5px;
   margin-bottom: 20px;
   color: #575757;
   font-family: 'Muli', sans-serif;
   background-color: white;
+}
+
+.Event_Header{
+  font-size: 1.5em;
+}
+
+.Event_Details{
+  color: #747474
+}
+
+.Event_Body{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.Event_Numbers{
+  font-size: 2em;
+  color: #8d8d8d;
+  font-weight: bold;
+}
+
+.Event_Button{
+  font-size: 1.7em;
+  font-weight: bold;
+  padding-top: 20px;
+}
+
+.Event_Second_Color{
+  color: #8d8d8d
 }
 
 /*--------------Add Events Container--------------->>>>>>*/
