@@ -20,9 +20,7 @@ class MainContainer extends Component {
   render() {
     return (
       <div>
-        {/* {this.props.user.isNew ? <TutorialContainer onLogoutClick={this.handleLogout}/> : <Main onLogoutClick={this.handleLogout}/>} */}
-        {/* TODO: undo comments */}
-        <Main onLogoutClick={this.handleLogout}/>
+        {this.props.user.isNew ? <TutorialContainer onLogoutClick={this.handleLogout}/> : <Main onLogoutClick={this.handleLogout}/>}
       </div>
     )
   }
