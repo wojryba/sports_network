@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as createEventActions from '../actions/createEventActions';
+import * as displyEventsActions from '../actions/displyEvents';
 import DatePicker from 'react-datepicker';
 import TimePicker from 'rc-time-picker';
 import moment from 'moment';
@@ -18,22 +19,16 @@ class NewEventForm extends Component {
 
     this.state = {
       startDate: moment(),
-      time: moment(),
+      time: moment().format('HH:mm'),
       address: '',
-      sport: ''
+      sport: 'Soccer'
     };
-
-    this.onChange = (address) => this.setState({
-      startDate: this.state.startDate,
-      time: this.state.time,
-      address,
-      sport: this.state.sport
-    })
 
     this.handleTimeChange = this.handleTimeChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this._onSelect = this._onSelect.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   handleDateChange(date) {
@@ -48,7 +43,7 @@ class NewEventForm extends Component {
   handleTimeChange(value) {
     this.setState({
       startDate: this.state.startDate,
-      time: value,
+      time: value.format('HH:mm'),
       address: this.state.address,
       sport: this.state.sport
     })
@@ -60,6 +55,15 @@ class NewEventForm extends Component {
       time: this.state.time,
       address: this.state.address,
       sport: option.value
+    })
+  }
+
+  onChange (address) {
+    this.setState({
+      startDate: this.state.startDate,
+      time: this.state.time,
+      address,
+      sport: this.state.sport
     })
   }
 
@@ -75,6 +79,7 @@ class NewEventForm extends Component {
       description: e.target.Description.value
     }
     this.props.createEventAction(event);
+    this.props.fetchEvents();
   }
 
   render() {
@@ -95,7 +100,7 @@ class NewEventForm extends Component {
     const options = [
       'Soccer', 'Volleyball', 'Basketball', 'Tennis', 'Table Tennis', 'Hockey', 'Golf', 'Badminton', 'American Football'
     ];
-    const defaultOption = options[0];
+    const defaultOption = this.state.sport;
 
     return (
       <div className="AddEvent_Container">
@@ -156,7 +161,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({createEventAction: createEventActions.createEvent}, dispatch);
+  return bindActionCreators({createEventAction: createEventActions.createEvent, fetchEvents: displyEventsActions.fetchEvents}, dispatch);
 }
 
 export default connect(

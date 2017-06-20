@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import * as displyEventsActions from '../actions/displyEvents';
 import EventsBody from '../components/EventsBody'
 
 class EventDisplay extends Component {
@@ -31,19 +34,43 @@ class EventDisplay extends Component {
     }
   }
 
+  componentWillMount() {
+    this.props.fetchEventsAction();
+  }
+
+  handleClick(id) {
+    this.props.addToEvent(id);
+    this.props.fetchEventsAction();
+  }
+
+
   render() {
     return (
       <div>
         <div className="Events_Header">
           Events Nearby
           </div>
-        { this.state.body.map((content) => (
-          <EventsBody key={content._id} header={content.event} sport={content.sport} time={content.time} location={content.location} date={content.date} body={content.description} attending={content.people} join={content.join} onAttendingClick={() => {this.handleClick(content._id)}}/>
+        {this.props.fetchEvents[0].events ? <div>{ this.props.fetchEvents[0].events.map((content) => (
+          <EventsBody key={content._id} header={content.event} sport={content.sport} time={content.time} location={content.location} date={content.date} body={content.description} attending={content.people.length} join={content.join} onAttendingClick={() => {this.handleClick(content._id)}}/>
         ))
-        }
+      } </div> : <p></p>}
     </div>
     )
   }
 }
 
-export default EventDisplay
+function mapStateToProps(state) {
+  const { fetchEvents } = state
+  return {
+    fetchEvents
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({fetchEventsAction: displyEventsActions.fetchEvents, addToEvent: displyEventsActions.addToEvent}, dispatch);
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EventDisplay);
