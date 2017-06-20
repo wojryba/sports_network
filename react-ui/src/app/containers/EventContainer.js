@@ -8,37 +8,27 @@ class EventDisplay extends Component {
       //added state to test if it works, delete and add database
       body: [
         {
-          event_id: 1,
-          header: 'Kickabout',
-          sport: 'Soccer',
-          location: "Meadows Park",
-          time: '2pm',
+          _id: 1,
+          creator: 'Barry Barryson',
+          event: 'Kickabout',
           date: "23/06/17",
-          body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae erat et dolor condimentum rutrum nec ac quam. Mauris id mollis ante. Curabitur malesuada placerat maximus.',
-          people: ['Daniel Blake', 'Steven Murphy', 'Jessy Matey'],
-          join: true
+          time: '14:00',
+          sport: 'Soccer',
+          location: 'Meadows Park',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae erat et dolor condimentum rutrum nec ac quam. Mauris id mollis ante. Curabitur malesuada placerat maximus.'
         },
         {
-          event_id: 2,
-          header: 'Football Tryouts',
-          sport: 'American Football',
-          location: "Church Park",
-          time: '2pm',
-          date: "26/07/17",
-          body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae erat et dolor condimentum rutrum nec ac quam. Mauris id mollis ante. Curabitur malesuada placerat maximus.',
-          people: ['Daniel Blake', 'Steven Murphy', 'Jessy Matey', 'Daniel Blake'],
-          join: false
+          _id: 2,
+          creator: 'David Barryson',
+          event: 'Football Tryouts',
+          date: "25/01/17",
+          time: '9:00',
+          sport: 'Soccer',
+          location: 'Church Park',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae erat et dolor condimentum rutrum nec ac quam. Mauris id mollis ante. Curabitur malesuada placerat maximus.'
         }
       ]
     }
-
-    this.handleClick = this.handleClick.bind(this)
-  }
-
-  handleClick(e){
-    let trueNum = e - 1
-    //change this to toggle join
-    console.log(this.state.body[trueNum].join)
   }
 
   render() {
@@ -48,7 +38,7 @@ class EventDisplay extends Component {
           Events Nearby
           </div>
         { this.state.body.map((content) => (
-          <EventsBody key={content.event_id} header={content.header} sport={content.sport} time={content.time} location={content.location} date={content.date} body={content.body} attending={content.people} join={content.join} onAttendingClick={() => {this.handleClick(content.event_id)}}/>
+          <EventsBody key={content._id} header={content.event} sport={content.sport} time={content.time} location={content.location} date={content.date} body={content.description} attending={content.people} join={content.join} onAttendingClick={() => {this.handleClick(content._id)}}/>
         ))
         }
     </div>
