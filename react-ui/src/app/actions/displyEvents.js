@@ -6,6 +6,7 @@ export const FETCH_EVENTS_ERROR = 'FETCH_EVENTS_ERROR';
 
 export const ADD_SUCCESS = 'ADD_SUCCESS';
 export const ADD_ERROR = 'ADD_ERROR';
+export const ADDED = 'ADDED';
 
 export function fetchEvents(profile) {
   // this is post request for saving user
@@ -29,5 +30,23 @@ export function addToEvent(id) {
       data: id,
       types: [ ADD_SUCCESS, ADD_ERROR ]
     }
+  }
+}
+
+export function deleteEvent(id) {
+  return {
+    [CALL_API]: {
+      endpoint: `events/deleteEvent`,
+      authenticated: true,
+      method: 'POST',
+      data: id,
+      types: [ ADD_SUCCESS, ADD_ERROR ]
+    }
+  }
+}
+
+export function added() {
+  return {
+    type: ADDED
   }
 }

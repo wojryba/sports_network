@@ -55,8 +55,15 @@ router.get('/fetch', authCheck, (req, res) => {
   User.findOne({user: req.user.sub}).then(user => {
     Event.find({location: user.location})
     .then(ev => {
-      ev = ev.filter(e => {
+      const response = ev.filter(e => {
         if (user.sportsFollowed.includes(e.sport)) {
+
+          // check if this user created this event
+          if (e.creator == user._id) {
+            e.enableDelete = true;
+          } else {
+            e.enableDelete = false;
+          }
 
           // getting proper dates
           const d = new Date();
@@ -81,8 +88,14 @@ router.get('/fetch', authCheck, (req, res) => {
       });
       res.send(ev);
     })
-    .catch(err => console.log(err))
-  }).catch(error => console.log(error))
+    .catch(error => {
+      console.log(error);
+      res.status(400).send(error);
+    })
+  }).catch(error => {
+    console.log(error);
+    res.status(400).send(error);
+  })
 })
 
 router.post('/addToEvent', authCheck, (req, res) => {
@@ -100,9 +113,29 @@ router.post('/addToEvent', authCheck, (req, res) => {
         ev.save().then(() => res.send('done'));
       }
     })
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error);
+      res.status(400).send(error);
+    })
   })
-  .catch(error => console.log(error))
+  .catch(error => {
+  console.log(error);
+  res.status(400).send(error);
+})
+})
+
+router.post('/deleteEvent', authCheck, (req, res) => {
+  User.findOne({user: req.user.sub}).populate('eventsCreated').exec((error, user) => {
+    if(error) {
+      res.status(400).send(error);
+    }
+    const event = user.eventsCreated.filter(e => {
+      if (e._id == req.body.data) {
+        return e;
+      }
+    });
+    event[0].remove().then(()=>res.send('done'))
+  })
 })
 
 module.exports = router;

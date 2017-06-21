@@ -38,20 +38,32 @@ class EventDisplay extends Component {
     this.props.fetchEventsAction();
   }
 
+  componentDidUpdate() {
+    if (this.props.joinEvent[0].joined === true) {
+      this.props.fetchEventsAction();
+      this.props.added();
+    }
+  }
+
   handleClick(id) {
     this.props.addToEvent(id);
+  }
+
+  handleDelete(id) {
+    this.props.deleteEvent(id);
     this.props.fetchEventsAction();
   }
 
 
   render() {
+    console.log (this.props.joinEvent[0])
     return (
       <div>
         <div className="Events_Header">
-          Events Nearby
+          Events Nearby {this.props.joinEvent[0].error ? <span>You can't join the event twice!</span> : <span></span>}
           </div>
         {this.props.fetchEvents[0].events ? <div>{ this.props.fetchEvents[0].events.map((content) => (
-          <EventsBody key={content._id} header={content.event} sport={content.sport} time={content.time} location={content.location} date={content.date} body={content.description} attending={content.people.length} join={content.join} onAttendingClick={() => {this.handleClick(content._id)}}/>
+          <EventsBody key={content._id} header={content.event} sport={content.sport} time={content.time} location={content.location} date={content.date} body={content.description} attending={content.people.length} join={content.join} enableDelete={content.enableDelete} onDeleteClick={() => this.handleDelete(content._id)} onAttendingClick={() => {this.handleClick(content._id)}}/>
         ))
       } </div> : <p></p>}
     </div>
@@ -60,14 +72,14 @@ class EventDisplay extends Component {
 }
 
 function mapStateToProps(state) {
-  const { fetchEvents } = state
+  const { fetchEvents, joinEvent } = state
   return {
-    fetchEvents
+    fetchEvents, joinEvent
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({fetchEventsAction: displyEventsActions.fetchEvents, addToEvent: displyEventsActions.addToEvent}, dispatch);
+  return bindActionCreators({fetchEventsAction: displyEventsActions.fetchEvents, addToEvent: displyEventsActions.addToEvent, added: displyEventsActions.added, deleteEvent: displyEventsActions.deleteEvent}, dispatch);
 }
 
 export default connect(

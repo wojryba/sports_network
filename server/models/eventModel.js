@@ -10,7 +10,8 @@ const EventSchema = new Schema({
   sport: String,
   location: {type: String, required: true},
   description: String,
-  people: {type: Array, default: [], ref:'User'}
+  people: {type: Array, default: [], ref:'User'},
+  enableDelete: Boolean
 })
 
 const Event = mongoose.model('Event', EventSchema);
